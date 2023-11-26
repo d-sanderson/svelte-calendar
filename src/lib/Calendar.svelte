@@ -36,21 +36,20 @@
       );
     }}>next</button
   >
-  <div>Su</div>
-  <div>Mo</div>
-  <div>Tu</div>
-  <div>We</div>
-  <div>Th</div>
-  <div>Fr</div>
-  <div>Sa</div>
+  <div class="flex items-center justify-center">Su</div>
+  <div class="flex items-center justify-center">Mo</div>
+  <div class="flex items-center justify-center">Tu</div>
+  <div class="flex items-center justify-center">We</div>
+  <div class="flex items-center justify-center">Th</div>
+  <div class="flex items-center justify-center">Fr</div>
+  <div class="flex items-center justify-center">Sa</div>
   {#each data.days as day}
     <button
       on:click={() => {
         activeDate = day.date;
       }}
-      class={`${
-        day.date === activeDate ? "bg-pink-500" : "bg-transparent"
-      } h-10 w-10 rounded-full border-blue-500 border items-center flex justify-center`}
+      class:bg-pink-500={day.date === activeDate}
+      class="h-10 w-10 rounded-full border-blue-500 border items-center flex justify-center"
     >
       {day?.day}
     </button>
