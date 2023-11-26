@@ -2,7 +2,7 @@
   import { generateCalendarData } from "./Calendar.utils.js";
   // onDayClick
   // dayClass
-  // dayNames
+  export let dayNames = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su']
   const currentDate = new Date();
   const options = { month: "long" };
   let activeDate = new Date().setHours(0, 0, 0, 0);
@@ -36,17 +36,16 @@
       );
     }}>next</button
   >
-  <div class="flex items-center justify-center">Su</div>
-  <div class="flex items-center justify-center">Mo</div>
-  <div class="flex items-center justify-center">Tu</div>
-  <div class="flex items-center justify-center">We</div>
-  <div class="flex items-center justify-center">Th</div>
-  <div class="flex items-center justify-center">Fr</div>
-  <div class="flex items-center justify-center">Sa</div>
+  {#each dayNames as dn}
+  <div class="day-name">{dn}</div>
+  {/each}
   {#each data.days as day}
     <button
       on:click={() => {
         activeDate = day.date;
+        const month = new Date(activeDate).getMonth()
+        const year = new Date(activeDate).getFullYear()
+        data = generateCalendarData(year, month)
       }}
       class:bg-pink-500={day.date === activeDate}
       class="h-10 w-10 rounded-full border-blue-500 border items-center flex justify-center"
