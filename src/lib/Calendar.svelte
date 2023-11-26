@@ -1,14 +1,15 @@
 <script lang="ts">
   import { generateCalendarData } from "./Calendar.utils.js";
   // onDayClick
-  // dayClass
   // dayClassActive
   // prev
   // next
   // activeDate
+  export let calendarContainerClass = "grid grid-rows-5 grid-cols-7 h-full gap-1 w-full"
+  export let dayClass = "h-10 w-10 rounded-full border-blue-500 border items-center flex justify-center"
   export let dayNames = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su']
   const currentDate = new Date();
-  let activeDate = new Date().setHours(0, 0, 0, 0);
+  export let selectedDate = new Date().setHours(0, 0, 0, 0);
 
   $: data = generateCalendarData(
     currentDate.getFullYear(),
@@ -16,7 +17,7 @@
   );
 </script>
 
-<section class="grid grid-rows-5 grid-cols-7 h-full gap-1 w-full">
+<section class={calendarContainerClass}>
   <button
     class="col-span-1 flex items-end justify-center"
     on:click={() => {
@@ -45,15 +46,19 @@
   {#each data.days as day}
     <button
       on:click={() => {
-        activeDate = day.date;
-        const month = new Date(activeDate).getMonth()
-        const year = new Date(activeDate).getFullYear()
+        selectedDate = day.date;
+        const month = new Date(selectedDate).getMonth()
+        const year = new Date(selectedDate).getFullYear()
         data = generateCalendarData(year, month)
       }}
-      class:bg-pink-500={day.date === activeDate}
-      class="h-10 w-10 rounded-full border-blue-500 border items-center flex justify-center"
+      class:bg-pink-500={day.date === selectedDate}
+      class={dayClass}
     >
       {day?.day}
     </button>
   {/each}
-</section>
+  <span class="col-span-7">
+    The selected date is: 
+    {new Date(selectedDate).toLocaleDateString()}
+  </span>
+  </section>
