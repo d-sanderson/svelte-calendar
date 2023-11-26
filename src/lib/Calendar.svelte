@@ -2,6 +2,9 @@
   import { generateCalendarData } from "./Calendar.utils.js";
   // onDayClick
   // dayClass
+  // dayClassActive
+  // prev
+  // next
   export let dayNames = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su']
   const currentDate = new Date();
   const options = { month: "long" };
