@@ -15,7 +15,7 @@
 
 <section class="grid grid-rows-5 grid-cols-7 h-full gap-1 w-full">
   <button
-    class="col-span-1 text-center"
+    class="col-span-1 flex items-end justify-center"
     on:click={() => {
       data = generateCalendarData(
         data.month.getFullYear(),
@@ -23,12 +23,12 @@
       );
     }}>prev</button
   >
-  <div class="col-span-5 text-center">
+  <div class="col-span-5 flex items-end justify-center">
     {data.month.toLocaleString("en-US", options)}
     {data.year}
   </div>
   <button
-    class="col-span-1 text-center"
+    class="col-span-1 flex items-end justify-center"
     on:click={() => {
       data = generateCalendarData(
         data.month.getFullYear(),
