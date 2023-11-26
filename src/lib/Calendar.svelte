@@ -1,57 +1,11 @@
 <script lang="ts">
+  import { generateCalendarData } from "./Calendar.utils.js";
   // onDayClick
-
+  // dayClass
+  // dayNames
   const currentDate = new Date();
   const options = { month: "long" };
   let activeDate = new Date().setHours(0, 0, 0, 0);
-  function generateCalendarData(year: number, month: number) {
-    const firstDay = new Date(year, month, 1);
-    const lastDay = new Date(year, month + 1, 0);
-    const daysInMonth = lastDay.getDate();
-    const firstDayIndex = firstDay.getDay();
-
-    const calendarData = [];
-
-    const prevMonthLastDay = new Date(year, month, 0);
-    const daysInPrevMonth = prevMonthLastDay.getDate();
-    const prevMonthStartIndex = firstDayIndex - 1;
-
-    for (
-      let i = daysInPrevMonth - prevMonthStartIndex;
-      i <= daysInPrevMonth;
-      i++
-    ) {
-      calendarData.push({
-        day: i,
-        date: new Date(year, month - 1, i),
-      });
-    }
-    // Add days of the month
-    for (let i = 1; i <= daysInMonth; i++) {
-      calendarData.push({
-        day: i,
-        date: new Date(year, month, i).setHours(0, 0, 0, 0),
-      });
-    }
-
-    // Calculate the number of days from the next month needed to fill the grid
-    const remainingDays =
-      (calendarData.length >= 36 ? 42 : 35) - calendarData.length;
-
-    // Add days from the next month
-    for (let i = 1; i <= remainingDays; i++) {
-      calendarData.push({
-        day: i,
-        date: new Date(year, month + 1, i).setHours(0, 0, 0, 0),
-      });
-    }
-
-    return {
-      year: firstDay.getFullYear(),
-      month: firstDay,
-      days: calendarData,
-    };
-  }
 
   $: data = generateCalendarData(
     currentDate.getFullYear(),
@@ -101,5 +55,4 @@
       {day?.day}
     </button>
   {/each}
-  {activeDate && activeDate}
 </section>
