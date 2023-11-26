@@ -14,7 +14,6 @@ export const generateCalendarData = (year: number, month: number): CalendarData 
   const daysInMonth = lastDay.getDate();
   const firstDayIndex = firstDay.getDay();
   const calendarData = [];
-
   // days of week from last month
   const prevMonthLastDay = new Date(year, month, 0);
   const daysInPrevMonth = prevMonthLastDay.getDate();

@@ -5,9 +5,9 @@
   // dayClassActive
   // prev
   // next
+  // activeDate
   export let dayNames = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su']
   const currentDate = new Date();
-  const options = { month: "long" };
   let activeDate = new Date().setHours(0, 0, 0, 0);
 
   $: data = generateCalendarData(
@@ -27,7 +27,7 @@
     }}>prev</button
   >
   <div class="col-span-5 flex items-end justify-center">
-    {data.month.toLocaleString("en-US", options)}
+    {data.month.toLocaleString("en-US", { month: 'long' })}
     {data.year}
   </div>
   <button
