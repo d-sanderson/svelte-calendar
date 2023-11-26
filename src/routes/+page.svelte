@@ -3,6 +3,6 @@
   import "../app.css";
 </script>
 
-<div class="w-80">
+<div class="w-80 mx-auto">
   <Calendar dayClass="h-10 w-10 rounded-full border-blue-500 border items-center flex justify-center" />
 </div>
