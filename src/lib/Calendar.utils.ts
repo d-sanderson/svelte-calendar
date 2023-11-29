@@ -64,10 +64,13 @@ export const limiter = (
   if(!limitDate) return false
   switch (type) {
     case "prev":
-      console.log("prev", now > limitDate)
-      return now.getTime() > limitDate.getTime();
+      return now >= limitDate;
     case "next":
-      console.log("next", now < limitDate)
-      return now.getTime() < limitDate.getTime();
+      return now <= limitDate;
   }
 };
+
+export const getYearandMonth = (date: Date) => ({
+  year: date.getFullYear(),
+  month: date.getMonth()
+})
