@@ -1,3 +1,4 @@
+
 interface CalendarData {
   year: number;
   month: Date;
@@ -8,7 +9,6 @@ interface CalendarData {
 }
 
 export const generateCalendarData = (year: number, month: number): CalendarData => {
-  // current month
   const firstDay = new Date(year, month, 1);
   const lastDay = new Date(year, month + 1, 0);
   const daysInMonth = lastDay.getDate();
@@ -55,3 +55,19 @@ export const generateCalendarData = (year: number, month: number): CalendarData 
     days: calendarData,
   };
 }
+
+export const limiter = (
+  now: Date,
+  limitDate: Date,
+  type: "prev" | "next"
+): boolean => {
+  if(!limitDate) return false
+  switch (type) {
+    case "prev":
+      console.log("prev", now > limitDate)
+      return now.getTime() > limitDate.getTime();
+    case "next":
+      console.log("next", now < limitDate)
+      return now.getTime() < limitDate.getTime();
+  }
+};
